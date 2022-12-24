@@ -4,7 +4,15 @@
     
     <div class="row">
         <div class="col-md-9"></div>
-        <p>hi</p>
+        <a href="{% url 'dylan' %}" id="id_nav_global_stream" class="col-md-1 text-white" style="padding: 0 0 0 0;">
+            Dylan
+        </a>
+        <a href="{% url 'rong' %}" id="id_nav_follower_stream" class="col-md-1 text-white" style="padding: 0 0 0 0;">
+            Rong
+        </a>
+        <a href="{% url 'sidequests' %}" id="id_nav_logout" class="col-md-1 text-white" style="padding: 0 0 0 0;">
+            Side Quests
+        </a>
         
     </div>
 {% endblock %}
