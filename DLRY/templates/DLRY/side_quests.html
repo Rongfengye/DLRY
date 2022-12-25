@@ -2,7 +2,26 @@
 
 {% block content %}
 
-<p>Welcome to our Side Quest Page!</p>
+<div class="row pt-5 pb-5">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 d-flex justify-content-center">
+        <h1>Side Quests</h1>
+    </div>
+</div>
 
+<div class="row">
+    <div class="col-md-4"></div>
+    <form method="post" action="{% url 'sidequests' %}" enctype='multipart/form-data'>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                {{ form }}
+                {% csrf_token %}
+                <div class="row pt-3"></div>
+                <button id="id_submit_quest_button">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
 
 {% endblock %}

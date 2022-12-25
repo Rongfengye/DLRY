@@ -8,6 +8,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
 from django.utils import timezone
+from DLRY.models import SideQuest
+from DLRY.forms import SideQuestForm
 # Create your views here.
 
 
@@ -25,5 +27,6 @@ def rong_page(request):
 
 def side_quests(request):
     context = dict()
+    context['form'] = SideQuestForm()
     return render(request, 'DLRY/side_quests.html', context)
 
