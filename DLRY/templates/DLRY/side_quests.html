@@ -25,9 +25,26 @@
 </div>
 
 <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        These are the Quests
+        <video autoplay="autoplay" controls="controls" preload="preload" width='320' height= '240'>
+            <source src="/static/DLRY/videos/HOOPALTERCATION.mov" type='video/mp4'></source> 
+        </video>
+        {% for quest in quests %}
+            <div>
+                <p>title is {{ quest.title }}</p>
+                <p>desc is {{ quest.description }}</p>
+                <p>video name is {{quest.video }}</p>
+                <p>static url is /static/DLRY/videos/HOOPALTERCATION.mov</p>
+                <!-- <source src="{{ quest.video }}" type="video/mp4"> -->
+                
+                <p>___________________________________</p>
+            </div>
+        {% endfor %}
+    </div>
 
 
-    
 </div>
 
 {% endblock %}

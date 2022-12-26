@@ -28,8 +28,14 @@ def rong_page(request):
 def side_quests(request):
     context = dict()
 
+    context['quests'] = SideQuest.objects.all()
+
     if request.method == "GET":
         context['form'] = SideQuestForm()
+        allSubmitted = SideQuest.objects.all()
+        for quest in allSubmitted:
+            print(f'questtitle: {quest.title}, desc: {quest.description}, video: {quest.video}')
+
         return render(request, 'DLRY/side_quests.html', context)
 
     # Else we are here as a result of a submit
