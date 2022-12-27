@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row pb-5">
     <div class="col-md-4"></div>
     <form method="post" action="{% url 'sidequests' %}" enctype='multipart/form-data'>
         <div class="row">
@@ -24,23 +24,32 @@
     </form>
 </div>
 
-<div class="row">
+<div class="row pt-5">
     <div class="col-md-4"></div>
-    <div class="col-md-4">
-        These are the Quests
 
-        {% for quest in quests %}
-            <div>
-                <p>title is {{ quest.title }}</p>
-                <p>desc is {{ quest.description }}</p>
-                <p>video URL is {{ MEDIA_URL }} {{quest.video}}</p>
-                <!-- <source src="{{ quest.video }}" type="video/mp4"> -->
-                <video autoplay="autoplay" controls="controls" preload="preload" width='320' height= '240'>
-                    <source src="/DLRY{{ MEDIA_URL }}{{ quest.video }}" type='video/mp4'></source> 
-                </video>
-                <p>___________________________________</p>
-            </div>
-        {% endfor %}
+
+    <div class="col-md-4">
+        <h1>Our Side Quests</h1>
+
+        
+        <table>
+            {% for questRow in quests %}
+                <tr>
+                    {% for quest in questRow %}
+                        <td>  
+                            <p>title is {{ quest.title }}</p>
+                            <p>desc is {{ quest.description }}</p>
+
+                            <p>video URL is {{ MEDIA_URL }} {{quest.video}}</p>
+                            <video autoplay="autoplay" controls="controls" preload="preload" width='320' height= '240'>
+                                <source src="/DLRY{{ MEDIA_URL }}{{ quest.video }}" type='video/mp4'></source> 
+                            </video>
+                        </td>
+                    {% endfor %}
+                </tr> 
+            {% endfor %}
+
+        </table>
     
     </div>
 

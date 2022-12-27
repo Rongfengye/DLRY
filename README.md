@@ -10,6 +10,8 @@ then make pages components under /pages before routing them in index.js
 
 
 https://timmyomahony.com/blog/static-vs-media-and-root-vs-path-in-django
+http://www.learningaboutelectronics.com/Articles/How-to-create-a-video-uploader-with-Python-in-Django.php 
+
 NOTE ABOUT THE FILE STORAGE
 
 The media folder is supposed to hold things like images, downloads and other material that might be uploaded during normal use of the website 

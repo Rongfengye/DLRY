@@ -28,7 +28,17 @@ def rong_page(request):
 def side_quests(request):
     context = dict()
 
-    context['quests'] = SideQuest.objects.all()
+    questList = []
+    count = 0
+    for item in SideQuest.objects.all():
+        if (count % 2 == 0):
+            questList.append([item])
+        else: 
+            questList[-1].append(item)
+        count += 1
+
+    context['quests'] = questList
+    # context['quests'] = SideQuest.objects.all()
 
     if request.method == "GET":
         context['form'] = SideQuestForm()
