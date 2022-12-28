@@ -24,16 +24,13 @@ hs_err_pid*
 
 node_modules
 
+venv
 myappVE
-
 DLRYvenv
 
 *.pyc
 db.sqlite3
 migrations
 .DS_Store
-venv
-my_env
 .idea
-virtual_env 
 *.ini
