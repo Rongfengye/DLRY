@@ -26,10 +26,3 @@ The idea is to make HTML that build and inherit off of each other.
     <div class="col"></div>
 </div>
 
-python3 -m venv DLRYvenv
-source DLRYvenv/bin/activate
-python3 -m pip install --upgrade pip
-python3 -m pip install django
-python3 manage.py makemigrations DLRY
-python3 manage.py migrate
-python3 manage.py runserver
