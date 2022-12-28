@@ -34,3 +34,5 @@ migrations
 .DS_Store
 .idea
 *.ini
+
+__pycache__
