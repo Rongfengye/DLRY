@@ -9,51 +9,39 @@
     </div>
 </div>
 
-<div class="row pb-5">
-    <div class="col-md-4"></div>
-    <form method="post" action="{% url 'sidequests' %}" enctype='multipart/form-data'>
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                {{ form }}
-                {% csrf_token %}
-                <div class="row pt-3"></div>
-                <button id="id_submit_quest_button">Submit</button>
-            </div>
-        </div>
+<div class="row pb-5 justify-content-md-center">
+    <div class="col"></div>
+    <form class="col-sm-7 col-md-5 col-lg-3" method="post" action="{% url 'sidequests' %}" enctype='multipart/form-data'>
+        {{ form }}
+        {% csrf_token %}
+        <button id="id_submit_quest_button">Submit</button>
     </form>
+    <div class="col"></div>
 </div>
 
-<div class="row pt-5">
-    <div class="col-md-4"></div>
+<div class="row pt-3 justify-content-center">
+    <div class="col"></div>
+    <table class="col-sm-10 col-md-8 col-lg-4 table-bordered">
+        {% for questRow in quests %}
+            <tr class="justify-content-center text-center">
+                {% for quest in questRow %}
+                    <td class="p-5">  
+                        <p class="h2">{{ quest.title }}</p>
+                        
+                        <video autoplay="autoplay" controls="controls" preload="preload" width='320' height= '240'>
+                            <source src="/DLRY{{ MEDIA_URL }}{{ quest.video }}" type='video/mp4'></source> 
+                        </video>
 
+                        <p>{{ quest.description }}</p>
+                    </td>
+                {% endfor %}
+            </tr> 
+        {% endfor %}
 
-    <div class="col-md-4">
-        <h1>Our Side Quests</h1>
-
-        
-        <table>
-            {% for questRow in quests %}
-                <tr>
-                    {% for quest in questRow %}
-                        <td>  
-                            <p>title is {{ quest.title }}</p>
-                            <p>desc is {{ quest.description }}</p>
-
-                            <p>video URL is {{ MEDIA_URL }} {{quest.video}}</p>
-                            <video autoplay="autoplay" controls="controls" preload="preload" width='320' height= '240'>
-                                <source src="/DLRY{{ MEDIA_URL }}{{ quest.video }}" type='video/mp4'></source> 
-                            </video>
-                        </td>
-                    {% endfor %}
-                </tr> 
-            {% endfor %}
-
-        </table>
-    
-    </div>
-
-
+    </table>
+    <div class="col"></div>
 </div>
+
+
 
 {% endblock %}

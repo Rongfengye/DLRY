@@ -3,10 +3,28 @@ Here we will create HTML files which have the capabilities of special syntax whi
 The idea is to make HTML that build and inherit off of each other.
 
 
-<p>video URL is {{ MEDIA_URL }} {{quest.video}}</p>
-                <video autoplay="autoplay" controls="controls" preload="preload" width='320' height= '240'>
-                    <source src="/DLRY{{ MEDIA_URL }}{{ quest.video }}" type='video/mp4'></source> 
-                </video>
+<div class="row pt-5 justify-content-center">
+    <div class="col"></div>
+    <table class="col-sm-10 col-md-8 col-lg-4">
+        {% for questRow in quests %}
+            <tr class="justify-content-center text-center">
+                {% for quest in questRow %}
+                    <td>  
+                        <p>title is {{ quest.title }}</p>
+                        <p>desc is {{ quest.description }}</p>
+
+                        <p>video URL is {{ MEDIA_URL }} {{quest.video}}</p>
+                        <video autoplay="autoplay" controls="controls" preload="preload" width='320' height= '240'>
+                            <source src="/DLRY{{ MEDIA_URL }}{{ quest.video }}" type='video/mp4'></source> 
+                        </video>
+                    </td>
+                {% endfor %}
+            </tr> 
+        {% endfor %}
+
+    </table>
+    <div class="col"></div>
+</div>
 
 python3 -m venv DLRYvenv
 source DLRYvenv/bin/activate

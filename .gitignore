@@ -32,3 +32,8 @@ DLRYvenv
 db.sqlite3
 migrations
 .DS_Store
+venv
+my_env
+.idea
+virtual_env 
+*.ini
