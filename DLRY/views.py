@@ -17,10 +17,17 @@ def home_page(request):
 
 def dylan_page(request):
     context = dict()
+    context['name'] = "Dylan Lai"
+    context['paragraph_1'] = "Im cool"
+    context['paragraph_2'] = "Im very cool"
+
     return render(request, 'DLRY/dylan_page.html', context)
 
 def rong_page(request):
     context = dict()
+    context['name'] = "Rong Ye"
+    context['paragraph_1'] = "Im cool"
+    context['paragraph_2'] = "Im very cool"
     return render(request, 'DLRY/rong_page.html', context)
 
 def side_quests(request):
