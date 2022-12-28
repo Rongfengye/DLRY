@@ -28,6 +28,33 @@ def rong_page(request):
 def side_quests(request):
     context = dict()
 
+    
+    # context['quests'] = SideQuest.objects.all()
+
+    if request.method == "GET":
+        context['form'] = SideQuestForm()
+
+    else:
+        new_form = SideQuestForm(request.POST, request.FILES)
+    
+
+        print(f'the submitted form {new_form}')
+
+        # Validates the form.
+        if not new_form.is_valid():
+            return render(request, 'DLRY/side_quests.html', context)
+
+        new_sidequest = SideQuest(title=new_form.cleaned_data['title'],description=new_form.cleaned_data['description'], video=new_form.cleaned_data['video'])
+        new_sidequest.save()
+
+        allSubmitted = SideQuest.objects.all()
+        print(f'these are all the submitted videos {allSubmitted}')
+
+        context['form'] = SideQuestForm()
+
+        # return render(request, 'DLRY/side_quests.html', context)
+
+    # Else we are here as a result of a submit
     questList = []
     count = 0
     for item in SideQuest.objects.all():
@@ -38,32 +65,5 @@ def side_quests(request):
         count += 1
 
     context['quests'] = questList
-    # context['quests'] = SideQuest.objects.all()
-
-    if request.method == "GET":
-        context['form'] = SideQuestForm()
-        allSubmitted = SideQuest.objects.all()
-        for quest in allSubmitted:
-            print(f'questtitle: {quest.title}, desc: {quest.description}, video: {quest.video}')
-
-        return render(request, 'DLRY/side_quests.html', context)
-
-    # Else we are here as a result of a submit
-
-    new_form = SideQuestForm(request.POST, request.FILES)
     
-
-    print(f'the submitted form {new_form}')
-
-    # Validates the form.
-    if not new_form.is_valid():
-        return render(request, 'DLRY/side_quests.html', context)
-
-    new_sidequest = SideQuest(title=new_form.cleaned_data['title'],description=new_form.cleaned_data['description'], video=new_form.cleaned_data['video'])
-    new_sidequest.save()
-
-    allSubmitted = SideQuest.objects.all()
-    print(f'these are all the submitted videos {allSubmitted}')
-
-    context['form'] = SideQuestForm()
     return render(request, 'DLRY/side_quests.html', context)
