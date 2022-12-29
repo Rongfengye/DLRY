@@ -2,7 +2,7 @@ from django import forms
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-from DLRY.models import SideQuest
+from DLRY.models import SideQuest, ProfilePic
 
 class SideQuestForm(forms.ModelForm):
     class Meta:
@@ -17,4 +17,15 @@ class SideQuestForm(forms.ModelForm):
             'title': 'SideQuest',
             'description': 'Enter Description',
             'video': 'Upload Video',
+        }
+
+class ProfilePicForm(forms.ModelForm):
+    class Meta:
+        model = ProfilePic
+        fields = {'image'}
+        widgets = {
+            'image': forms.FileInput(attrs={'id':'id_profile_picture'})
+        }
+        labels = {
+            'image': 'Upload Image',
         }

@@ -8,8 +8,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
 from django.utils import timezone
-from DLRY.models import SideQuest
-from DLRY.forms import SideQuestForm
+from DLRY.models import SideQuest, ProfilePic
+from DLRY.forms import SideQuestForm,ProfilePicForm
 # Create your views here.
 
 
@@ -22,6 +22,34 @@ def dylan_page(request):
     context['name'] = "Dylan Lai"
     context['paragraph_1'] = "Im cool"
     context['paragraph_2'] = "Im very cool"
+
+    print(f"This is request {request} and request.method {request.method}")
+    
+
+    if request.method == "GET":
+        print("bye")
+        context['form'] = ProfilePicForm()
+    
+    else:
+        print("hi")
+        new_form = ProfilePicForm(request.POST, request.FILES)
+        # print(new_form)
+
+        if not new_form.is_valid():
+            return render(request, 'DLRY/profile_page.html', context)
+        
+        new_profilepic = ProfilePic(image=new_form.cleaned_data['image'])
+        new_profilepic.save()
+
+        context['form'] = ProfilePicForm()
+    
+    for image in ProfilePic.objects.all():
+        print(f"this is image {image}, image field is {image.image}")
+
+
+    # context['pics'] = ProfilePic.objects.all()
+    context['pics'] = ProfilePic.objects.all()[0]
+
 
     return render(request, 'DLRY/dylan_page.html', context)
 
@@ -37,13 +65,16 @@ def side_quests(request):
 
     
     # context['quests'] = SideQuest.objects.all()
+    print(f'request object is {request}')
 
     if request.method == "GET":
+        
         context['form'] = SideQuestForm()
 
     else:
+        
+        print(f'in case of post post obejct is {request.POST}')
         new_form = SideQuestForm(request.POST, request.FILES)
-    
 
         print(f'the submitted form {new_form}')
 
@@ -53,9 +84,6 @@ def side_quests(request):
 
         new_sidequest = SideQuest(title=new_form.cleaned_data['title'],description=new_form.cleaned_data['description'], video=new_form.cleaned_data['video'])
         new_sidequest.save()
-
-        allSubmitted = SideQuest.objects.all()
-        print(f'these are all the submitted videos {allSubmitted}')
 
         context['form'] = SideQuestForm()
 
@@ -74,3 +102,30 @@ def side_quests(request):
     context['quests'] = questList
     
     return render(request, 'DLRY/side_quests.html', context)
+
+
+def profile_pic(request):
+    context = dict()
+    print(f"This is request {request}")
+    
+
+    if request.method == "GET":
+        
+        context['form'] = ProfilePicForm()
+    
+    else:
+        
+        new_form = ProfilePicForm(request.POST, request.FILES)
+
+        if not new_form.is_valid():
+            return render(request, 'DLRY/profile_page.html', context)
+        
+        new_profilepic = ProfilePic(image=new_form.cleaned_data['image'])
+        new_profilepic.save()
+
+        context['form'] = ProfilePicForm()
+    
+    context['pics'] = ProfilePic.objects.all()
+        
+    
+    return render(request, 'DLRY/profile_page.html', context)

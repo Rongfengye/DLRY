@@ -36,3 +36,5 @@ migrations
 *.ini
 
 __pycache__
+
+media

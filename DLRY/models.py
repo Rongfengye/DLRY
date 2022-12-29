@@ -13,3 +13,8 @@ class SideQuest(models.Model):
     # prob should use static url
     def __str__(self):
         return self.title + "," + self.description + " : "+ str(self.video)
+
+
+class ProfilePic(models.Model):
+
+    image = models.FileField(upload_to='images/')
