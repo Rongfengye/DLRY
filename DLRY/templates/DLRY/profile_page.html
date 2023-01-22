@@ -42,14 +42,14 @@
 </div>
 
 
-<div class="row">
-    <div class="col"></div>
-    <table class="col-md-8 table-bordered">
+<div class="row pb-5">
+    <div class="col-md-1"></div>
+    <table class="col-md-10 table-bordered">
         {% for imageRow in pics %}
             <tr class="justify-content-center">
                 {% for pic in imageRow %}
-                    <td class="p-5 justify-content-center">  
-                        <img src="/DLRY{{ MEDIA_URL }}{{ pic.image }}">
+                    <td class="p-3">  
+                        <img class="img-fluid img-center width: 100% \9;" src="/DLRY{{ MEDIA_URL }}{{ pic.image }}">
                     </td>
                 {% endfor %}
             </tr> 

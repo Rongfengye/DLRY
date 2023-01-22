@@ -48,13 +48,13 @@ def dylan_page(request):
     
     for image in ProfilePic.objects.all():
         
-        if (count % 2 == 0):
+        if (count % 5 == 0):
             picList.append([image])
         else: 
             picList[-1].append(image)
         count += 1
   
-    context['pics'] = picList[:-1]
+    context['pics'] = picList
     
 
     return render(request, 'DLRY/dylan_page.html', context)
@@ -130,6 +130,7 @@ def profile_pic(request):
         new_profilepic.save()
 
         context['form'] = ProfilePicForm()
+        
     
     context['pics'] = ProfilePic.objects.all()
         
