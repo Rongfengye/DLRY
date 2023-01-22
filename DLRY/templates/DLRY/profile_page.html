@@ -31,16 +31,32 @@
     
 </div>
 
-
-<form class="col-sm-7 col-md-5 col-lg-3" method="post" action="{% url 'dylan' %}" enctype='multipart/form-data'>
-    {{ form }}
-    {% csrf_token %}
+<div class="row pb-5 justify-content-md-center">
+    <div class="col-md-2"></div>
+    <form class="col-md-10" method="post" action="{% url 'dylan' %}" enctype='multipart/form-data'>
+        {{ form }}
+        {% csrf_token %}
     <button id="id_submit_quest_button">Submit</button>
-</form>
+    </form>
+    <div class="col"></div>
+</div>
 
-<div>
-    <p>This is link /DLRY{{ MEDIA_URL }}images/6A5F798C-65C9-471E-B529-2D8F5E45BBC9_4_5005_c.jpeg</p>
-    <img src="/DLRY{{ MEDIA_URL }}{{ pics.image }}">
+
+<div class="row">
+    <div class="col"></div>
+    <table class="col-md-8 table-bordered">
+        {% for imageRow in pics %}
+            <tr class="justify-content-center">
+                {% for pic in imageRow %}
+                    <td class="p-5 justify-content-center">  
+                        <img src="/DLRY{{ MEDIA_URL }}{{ pic.image }}">
+                    </td>
+                {% endfor %}
+            </tr> 
+        {% endfor %}
+
+    </table>
+    
 </div>
 
   

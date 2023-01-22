@@ -22,18 +22,17 @@ def dylan_page(request):
     context['name'] = "Dylan Lai"
     context['paragraph_1'] = "Im cool"
     context['paragraph_2'] = "Im very cool"
-
+    
     print(f"This is request {request} and request.method {request.method}")
     
 
     if request.method == "GET":
-        print("bye")
         context['form'] = ProfilePicForm()
-    
+
     else:
-        print("hi")
+    
         new_form = ProfilePicForm(request.POST, request.FILES)
-        # print(new_form)
+        
 
         if not new_form.is_valid():
             return render(request, 'DLRY/profile_page.html', context)
@@ -43,13 +42,20 @@ def dylan_page(request):
 
         context['form'] = ProfilePicForm()
     
+    picList = []
+    
+    count = 0
+    
     for image in ProfilePic.objects.all():
-        print(f"this is image {image}, image field is {image.image}")
-
-
-    # context['pics'] = ProfilePic.objects.all()
-    context['pics'] = ProfilePic.objects.all()[0]
-
+        
+        if (count % 2 == 0):
+            picList.append([image])
+        else: 
+            picList[-1].append(image)
+        count += 1
+  
+    context['pics'] = picList[:-1]
+    
 
     return render(request, 'DLRY/dylan_page.html', context)
 
@@ -108,7 +114,7 @@ def profile_pic(request):
     context = dict()
     print(f"This is request {request}")
     
-
+    
     if request.method == "GET":
         
         context['form'] = ProfilePicForm()
